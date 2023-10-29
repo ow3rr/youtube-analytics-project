@@ -60,6 +60,30 @@ class Channel:
 
     """класс-метод `get_service()`, возвращающий объект для работы с YouTube API"""
 
+    def __str__(self):
+        return f"'{self.title} ({self.url})'"
+
+    def __add__(self, other):
+        return int(self.video_count) + int(other.video_count)
+
+    def __sub__(self, other):
+        return int(self.video_count) - int(other.video_count)
+
+    def __gt__(self, other):
+        return int(self.video_count) > int(other.video_count)
+
+    def __ge__(self, other):
+        return int(self.video_count) >= int(other.video_count)
+
+    def __lt__(self, other):
+        return int(self.video_count) < int(other.video_count)
+
+    def __le__(self, other):
+        return int(self.video_count) <= int(other.video_count)
+
+    def __eq__(self, other):
+        return int(self.video_count) == int(other.video_count)
+
     @classmethod
     def get_service(cls):
         return build('youtube', 'v3', developerKey=API_KEY)
