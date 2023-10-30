@@ -27,7 +27,7 @@ class Channel:
         self.description = self.channel['items'][0]['snippet']['description']
         self.url = f"https://www.youtube.com/channel/{self.id}"
         self.subscriber_count = self.channel['items'][0]['statistics']['subscriberCount']
-        self.video_count = self.channel['items'][0]['statistics']['videoCount']
+        self.video_count = int(self.channel['items'][0]['statistics']['videoCount'])
         self.view_count = self.channel['items'][0]['statistics']['viewCount']
 
     """Переделываем получение данных по ютубу из атрибута в функцию"""
@@ -64,25 +64,25 @@ class Channel:
         return f"'{self.title} ({self.url})'"
 
     def __add__(self, other):
-        return int(self.video_count) + int(other.video_count)
+        return self.video_count + other.video_count
 
     def __sub__(self, other):
-        return int(self.video_count) - int(other.video_count)
+        return self.video_count - other.video_count
 
     def __gt__(self, other):
-        return int(self.video_count) > int(other.video_count)
+        return self.video_count > other.video_count
 
     def __ge__(self, other):
-        return int(self.video_count) >= int(other.video_count)
+        return self.video_count >= other.video_count
 
     def __lt__(self, other):
-        return int(self.video_count) < int(other.video_count)
+        return self.video_count < other.video_count
 
     def __le__(self, other):
-        return int(self.video_count) <= int(other.video_count)
+        return self.video_count <= other.video_count
 
     def __eq__(self, other):
-        return int(self.video_count) == int(other.video_count)
+        return self.video_count == other.video_count
 
     @classmethod
     def get_service(cls):
